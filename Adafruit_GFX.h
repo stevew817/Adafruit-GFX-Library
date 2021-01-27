@@ -190,7 +190,11 @@ public:
   using Print::write;
   virtual size_t write(uint8_t);
 #else
-  virtual void print(char* str);
+  void print(const char* str) {
+    while(*str != 0) {
+        this->write(*str++);
+    }
+  }
   virtual size_t write(uint8_t);
 #endif
 
