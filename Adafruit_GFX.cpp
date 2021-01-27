@@ -39,6 +39,9 @@ POSSIBILITY OF SUCH DAMAGE.
 #include <pgmspace.h>
 #endif
 
+#include "stdlib.h"
+#define abs(x) ((x) > 0 ? (x) : 0 - (x))
+
 // Many (but maybe not all) non-AVR board installs define macros
 // for compatibility with existing PROGMEM-reading AVR code.
 // Do our own checks and defines here for good measure...
@@ -1473,6 +1476,7 @@ void Adafruit_GFX::getTextBounds(const char *str, int16_t x, int16_t y,
   }
 }
 
+#if ARDUINO > 100
 /**************************************************************************/
 /*!
     @brief    Helper to determine size of a string with current font/size. Pass
@@ -1530,7 +1534,7 @@ void Adafruit_GFX::getTextBounds(const __FlashStringHelper *str, int16_t x,
     *h = maxy - miny + 1;
   }
 }
-
+#endif
 /**************************************************************************/
 /*!
     @brief      Invert the display (ideally using built-in hardware command)
